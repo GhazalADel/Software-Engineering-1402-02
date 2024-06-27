@@ -285,3 +285,4 @@ cython_debug/
 # https://plugins.jetbrains.com/plugin/8053-azure-toolkit-for-intellij
 .idea/**/azureSettings.xml
 
+SE_P2.pdf
