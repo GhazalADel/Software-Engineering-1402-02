@@ -1,0 +1,151 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Static Template</title>
+    <link rel="stylesheet" href="{% static 'home_style.css' %}"/>
+</head>
+<body>
+<div class="container">
+
+    <label class="box first-box">
+        <span>
+        </span>
+    </label>
+
+    <label class="box second-box">
+        <span></span>
+    </label>
+    <label class="box third-box">
+        <span></span>
+    </label>
+    <label class="box fourth-box">
+        <span></span>
+    </label>
+    <label class="box fifth-box">
+        <span></span>
+    </label>
+</div>
+<div id="mainButtonContainer">
+    <div id="mainButton">
+        <div class="btn-text" onclick="openForm()">add</div>
+        <div class="modal">
+            <div class="close-button" onclick="closeForm()">x</div>
+            <div class="form-title">Add a new Card</div>
+            <div class="input-group">
+                <input type="text" id="front" onblur="checkFrontInput(this)" oninput="updateFront(this)"/>
+                <label for="front">Front</label>
+                <label for="front" id="front_error"></label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="back" onblur="checkBackInput(this)" oninput="updateBack(this)"/>
+                <label for="back">Back</label>
+            </div>
+            <div class="form-button" id="add-card-btn">Add Card</div>
+            <div class="card">
+                <div class="content">
+                    <div class="front">
+                        [Front!]
+                    </div>
+                    <div class="back">
+                        [Back!]
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="break"></div>
+    <div id="mainButton">
+        <div class="btn-text" id="start-session-btn">start session</div>
+    </div>
+    <div class="break"></div>
+    <div id="mainButton">
+        <div class="btn-text" id="list-cards-btn">view cards</div>
+    </div>
+</div>
+
+<div id="sessionModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeSessionModal()">&times;</span>
+        <div class="message">
+            <p id="sessionMessage"></p>
+        </div>
+        <button id="ready-btn" class="session-button" style="display: none;" onclick="readySession()">Ready</button>
+        <button id="next-session-btn" class="session-button" style="display: none;" onclick="nextSession()">Next Session</button>
+    </div>
+</div>
+
+<div id="messageModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeMessageModal()">&times;</span>
+        <p id="messageContent"></p>
+    </div>
+</div>
+
+<div id="feedbackModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeFeedbackModal()">&times;</span>
+        <h4>Card Feedback</h4>
+        <div class="card-container">
+            <div class="feedbackCard" id="feedbackCard">
+                <div class="front">
+                    <div class="front-text"></div>
+                    <div class="front-id"></div>
+                </div>
+                <div class="back">
+                    <div class="back-text"></div>
+                </div>
+            </div>
+        </div>
+        <div id="feedback-buttons" class="hidden">
+            <button id="feedbackCorrectBtn">Correct</button>
+            <button id="feedbackIncorrectBtn">Incorrect</button>
+        </div>
+    </div>
+</div>
+
+<div id="cardsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h4>Cards</h4>
+        <div class="fixed-header">
+            <div>Front Value</div>
+            <div>Back Value</div>
+        </div>
+        <div id="cardsContainer">
+            <!-- Card items will be dynamically added here -->
+        </div>
+    </div>
+</div>
+
+<div id="editCardModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeEditForm()">&times;</span>
+        <h2>Edit Card</h2>
+        <input type="hidden" id="editCardId">
+        <div class="input-group">
+            <label for="editFront">Front</label>
+            <label for="editFront" id="edit_front_error" style="color: red;"></label>
+            <input type="text" id="editFront" onblur="checkFrontInput(this)">
+        </div>
+        <div class="input-group">
+            <label for="editBack">Back</label>
+            <input type="text" id="editBack">
+        </div>
+        <div class="form-button" id="saveEditBtn">Save</div>
+        <div class="card">
+            <div class="content">
+                <div class="front" id="editFrontPreview">[Front!]</div>
+                <div class="back" id="editBackPreview">[Back!]</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script src="{% static 'home.js' %}"></script>
